@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="url-change-notice">
+        Please note that the inspection URL base has recently changed.
+    </div>
+
+  <div class="inspect-endpoint" *ngIf="groupingKey">
+      <ng-container *ngIf="getInspectEndpoint(groupingKey) as endpoint">
+      <a [href]="endpoint" target="_blank">{{endpoint}}</a>
+      <a (click)="copyEndpoint()" class="copy" [cdkCopyToClipboard]="endpoint">(copy)</a>
+    </ng-container>
+  </div>
+
+  <button (click)="generateNewEndpoint()" class="generate-button" mat-raised-button>Generate New Inspection Endpoint</button>
+
+  
+  <div class="requests">
+    <div class="refresh">
+      <mat-checkbox
+          [(ngModel)]="autoRefresh">
+          Auto-Refresh
+    </mat-checkbox>
+    </div>
+    
+    <ng-container *ngIf="parsedRequests$ | async as reqs">
+      <mat-accordion multi>
+        <mat-expansion-panel *ngFor="let req of reqs trackBy: requestsTrackBy">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{req.method}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{req.creationTime | date : 'MM/dd/yyyy hh:mm:ssa' }}
+            </mat-panel-description>
+            <mat-panel-description>
+              {{req.isMulti ? 'multipart' : ''}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <comp-inspect [request]="req"></comp-inspect>
+
+          <div class="share">
+            <mat-divider></mat-divider>
+            <div>
+              <label>Shareable Inspection Link:</label>
+              <a [href]="getShareInspectionUrl(req.parsedRequestId)" target="_blank">{{getShareInspectionUrl(req.parsedRequestId)}}</a>
+              <a class="copy" [cdkCopyToClipboard]="getShareInspectionUrl(req.parsedRequestId)" (click)="copyShareInspectionUrl()">(copy)</a>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>      
+    </ng-container>
+  </div>
+
+</div>

@@ -1,0 +1,65 @@
+.container {
+  margin-bottom: 60px;
+}
+
+.path {
+  font-size: 20px;
+  margin: 20px 0px;
+  color: rgb(228, 0, 0);
+}
+
+.heading {
+  font-size: 18px;
+  margin: 35px 0px 20px;
+  color: rgb(0, 126, 0);
+}
+
+.contents-multipart-heading {
+  font-size: 14px;
+}
+
+.contents-link {
+  margin: 5px;
+}
+
+.parts {
+  margin: 20px 0px;
+}
+
+.query-parameter label {
+  font-weight: bold;
+}
+
+.header label {
+  font-weight: bold;
+}
+
+.curl {
+  display: block;
+  white-space: pre-wrap;
+  border: 1px solid rgb(200, 200, 200);
+  background-color: rgb(240, 240, 240);
+  padding: 6px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 12px;
+}
+
+.curl-toggle {
+  font-size: 12px;
+}
+
+.file-paths-note {
+  margin-top: 2px;
+  color: red;
+}
+
+.path-to {
+  font-style: italic;
+  font-weight: bold;
+}
+
+::ng-deep {
+  .curl-panel .mat-expansion-panel-body {
+    padding: 0px !important;
+  }
+}

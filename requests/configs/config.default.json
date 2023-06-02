@@ -1,0 +1,22 @@
+{
+    "app_name": "sicinspect_requests",
+    "base_path": "/sicinspect/requests/api/v1",
+    "limiter": {
+        "api_limits": ["60/minute"],
+        "storage_uri": "mongodb://localhost:27017"
+    },
+    "inspect_view": {
+        "max_payload_size_bytes": 4194304
+    },
+    "request_parser": {
+        "buffer_size": 512,
+        "dir_path": "contents",
+        "file_expire_seconds": 172800
+    },
+    "parsed_requests_provider": {
+        "expire_seconds": 172800,
+        "max_requests": 30,
+        "mongo_connection_string": "mongodb://localhost:27017",
+        "mongo_collection": "parsed_requests"
+    }
+}

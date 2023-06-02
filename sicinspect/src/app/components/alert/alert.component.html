@@ -1,0 +1,22 @@
+<div *ngIf="type" class="container">
+    <div *ngIf="type==='alert'" class="alert">
+        <div class="dismiss">
+            <div>
+                <button (click)="dismiss()" class="dismiss-button" mat-raised-button>close</button>
+            </div>
+        </div>
+
+        <div class="title">{{title}}</div>
+        <div class="message" [innerHTML]="message"></div>
+    </div>
+
+    <div *ngIf="type==='confirm'" class="confirm">
+        <div class="title">{{title}}</div>
+        <div class="message" [innerHTML]="message"></div>
+
+        <div class="confirm-buttons">
+            <div><button class="button-no" (click)="no()" mat-raised-button>No</button></div>
+            <div><button class="button-yes" (click)="yes()" mat-raised-button>Yes</button></div>
+        </div>
+    </div>
+</div>

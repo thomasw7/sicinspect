@@ -1,0 +1,55 @@
+.container {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    border: none;
+    z-index: 999999;
+    background-color: rgba(1, 1, 1, 0.5);
+}
+
+.alert,.confirm {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    max-width: 500px;
+    min-width: 275px;
+    background-color: white;
+    padding: 20px;
+}
+
+.title {
+    padding: 10px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.message {
+    padding: 20px 10px;
+    font-size: 18px;
+}
+
+.dismiss {
+    font-size: 14px;
+    float: right;
+    cursor: pointer;
+}
+
+.confirm-buttons {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+}
+
+.confirm-buttons > div {
+    text-align: center;
+}
+
+.confirm-buttons button {
+    width: 130px;
+    margin: 10px;
+}

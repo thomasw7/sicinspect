@@ -1,0 +1,7 @@
+<div class="container" *ngIf="parsedRequest$ | async as req">
+  <h1>
+    {{req.creationTime | date : 'MM/dd/yyyy hh:mm:ssa' }} {{req.isMulti ? ' - multipart' : ''}}
+  </h1>
+
+  <comp-inspect [request]="req"></comp-inspect>
+</div>

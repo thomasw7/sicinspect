@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="path">
+    {{request.method}} {{request.path}}
+  </div>
+
+  <div>
+    <h2 class="heading">
+      Query Parameters
+      <mat-divider></mat-divider>
+    </h2>
+
+    <div class="query-parameters">
+      <div *ngIf="!objectCount(request.query)">None</div>
+      <div class="query-parameter" *ngFor="let param of request.query">
+        <label>{{param.name}}:</label> {{param.value}}
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="heading">
+      Headers
+      <mat-divider></mat-divider>
+    </h2>
+
+    <div class="headers">
+      <div *ngIf="!objectCount(request.headers)">None</div>
+      <div class="header" *ngFor="let header of request.headers">
+        <label>{{header.name}}:</label> {{header.value}}
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="heading">
+      Contents <span *ngIf="request.isMulti" class="contents-multipart-heading">(multipart)</span>
+      <mat-divider></mat-divider>
+    </h2>
+    
+    <div *ngIf="!objectCount(request.parts)">None</div>
+    <div class="parts" *ngFor="let part of request.parts">
+      <div class="header" *ngFor="let header of part.headers">
+        <label>{{header.name}}:</label> {{header.value}}
+      </div>
+
+      <div class="contents-link">
+        <a [href]="getContentEndpoint(request.parsedRequestId, part.contentId)" target="_blank">View Contents</a>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="heading">
+      Curl (beta)
+      <mat-divider></mat-divider>
+    </h2>
+
+    
+    <a class="curl-toggle" (click)="curlPanel.toggle()">({{curlPanel.expanded ? 'hide' : 'show'}})</a>
+    <mat-accordion>
+      <mat-expansion-panel #curlPanel class="mat-elevation-z0 curl-panel" (opened)="generateCurl(request)">
+        <code class="curl">
+          <ng-container>{{curl}}</ng-container>
+        </code>
+        <div class="file-paths-note">*File paths do not reflect your local file system (<span class="path-to">/path/to/file.name</span> should be updated to reflect your file location)</div>
+      </mat-expansion-panel>
+    </mat-accordion>      
+    
+  </div>
+</div>
