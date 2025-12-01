@@ -1,8 +1,4 @@
 <div class="container">
-    <div class="url-change-notice">
-        Please note that the inspection URL base has recently changed.
-    </div>
-
   <div class="inspect-endpoint" *ngIf="groupingKey">
       <ng-container *ngIf="getInspectEndpoint(groupingKey) as endpoint">
       <a [href]="endpoint" target="_blank">{{endpoint}}</a>
