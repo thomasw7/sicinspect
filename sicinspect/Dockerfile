@@ -1,7 +1,6 @@
-FROM nginx:1.27.0
+FROM nginx:1.27.0 AS builder
 
 RUN rm /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf /usr/share/nginx/html/index.html
-COPY nginx.conf /etc/nginx
 COPY . /app
 
 WORKDIR /app
@@ -17,3 +16,8 @@ RUN apt-get update && apt-get upgrade -y && \
 RUN npm install --no-progress
 RUN npm install --no-progress -g @angular/cli
 RUN ng build --output-path=/app/dist --base-href=/
+
+
+FROM nginx:1.27.0 AS final
+COPY nginx.conf /etc/nginx
+COPY --from=builder /app/dist /app/dist
