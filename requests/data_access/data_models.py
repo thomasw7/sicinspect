@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Dict, List
 
 @dataclass(frozen=True)
 class ParsedRequestParameter:
@@ -9,7 +8,7 @@ class ParsedRequestParameter:
 
 @dataclass(frozen=True)
 class ParsedRequestPart:
-  headers: List[ParsedRequestParameter]
+  headers: list[ParsedRequestParameter]
   content_id: str
 
 @dataclass(frozen=True)
@@ -20,6 +19,6 @@ class ParsedRequest:
   is_multi: bool
   method: str
   path: str
-  query: List[ParsedRequestParameter]
-  headers: List[ParsedRequestParameter]
-  parts: List[ParsedRequestPart]
+  query: list[ParsedRequestParameter]
+  headers: list[ParsedRequestParameter]
+  parts: list[ParsedRequestPart]

@@ -7,7 +7,6 @@ from data_access.data_models import ParsedRequest, ParsedRequestPart, ParsedRequ
 from datetime import datetime, timezone
 from werkzeug.exceptions import NotFound
 from uuid import uuid4
-from typing import Dict, List, Tuple
 
 
 @dataclass(frozen=True)
@@ -39,7 +38,7 @@ class RequestParser:
         now = self.__ref_date.get().timestamp()
         _ = [self.__delete_file(path) for path, mtime in mtimes if now - mtime >= expire_seconds]
 
-    def parse(self, grouping_key: str, method: str, path: str, query: List[Tuple[str, str]], headers: List[Tuple[str, str]], stream, encoding='utf8', is_multi = False, boundary: bytes = None):
+    def parse(self, grouping_key: str, method: str, path: str, query: list[tuple[str, str]], headers: list[tuple[str, str]], stream, encoding='utf8', is_multi = False, boundary: bytes = None):
         self.purge_expired()
         buffer_size = self.__config.buffer_size
 
@@ -52,8 +51,8 @@ class RequestParser:
             file_path = self.get_content_path(content_id)
             file = open(file_path, 'wb')
 
-        part_headers:List[ParsedRequestParameter] = []
-        parts:List[ParsedRequestPart] = []
+        part_headers:list[ParsedRequestParameter] = []
+        parts:list[ParsedRequestPart] = []
         parse_state = 'content'
 
         header_separator = b'\r\n\r\n'

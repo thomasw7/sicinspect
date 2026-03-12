@@ -1,8 +1,6 @@
 from dataclasses import dataclass
-from typing import Dict
 from uuid import uuid4
 from datetime import datetime, timedelta
-from typing import List
 from pymongo import MongoClient
 from pymongo.collection import Collection, ObjectId
 from injector import inject
@@ -29,19 +27,19 @@ class ParsedRequestsProvider:
     def __collection(self) -> Collection:
         return self.__mongo.sicinspect[self.__config.mongo_collection]
     
-    def __map_parameter(self, dic: Dict):
+    def __map_parameter(self, dic: dict):
         return ParsedRequestParameter(
             dic['name'],
             dic['value']
         )
     
-    def __map_part(self, dic: Dict):
+    def __map_part(self, dic: dict):
         return ParsedRequestPart(
             headers = [self.__map_parameter(x) for x in dic['headers']],
             content_id = dic['content_id']
         )
     
-    def __map(self, dic: Dict):
+    def __map(self, dic: dict):
         return ParsedRequest(
             parsed_request_id = str(dic['_id']),
             grouping_key = dic['grouping_key'],
